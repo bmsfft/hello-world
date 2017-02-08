@@ -450,12 +450,12 @@ int UHD_SAFE_MAIN(int argc, char *argv[]){
         std::cout << "Press Ctrl + C to stop streaming..." << std::endl;
     }
     
-	//reset usrp time to prepare for transmit/receive
+    //reset usrp time to prepare for transmit/receive
     std::cout << boost::format("Setting device timestamp to 0...") << std::endl;
     tx_usrp->set_time_now(uhd::time_spec_t(0.0));
     
-	//start trasmitter thread. std::cout << "Thread Spawned" << std::endl;
-	boost::thread_group transmit_thread;
+    //start trasmitter thread. std::cout << "Thread Spawned" << std::endl;
+    boost::thread_group transmit_thread;
     transmit_thread.create_thread(boost::bind(&send_from_file, buff, tx_stream, md, filetx, num_channels));
 
     //recv to file
